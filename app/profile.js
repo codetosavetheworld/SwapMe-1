@@ -5,6 +5,7 @@ var firebase = require("nativescript-plugin-firebase");
 var camera = require("nativescript-camera");
 var imageModule = require("ui/image");
 
+//this function generate returns JSON response with information of the passed user.
 function queryUsers(uid) {
     firebase.query(result => {
         console.log("query result:", JSON.stringify(result));
@@ -27,6 +28,7 @@ function queryUsers(uid) {
     });
 }
 
+//this function loads user's profile name, image and description in the swiping page
 exports.pageLoaded = function(args) {
     var page = args.object;
     page.bindingContext = pageData;
@@ -43,11 +45,13 @@ exports.pageLoaded = function(args) {
     
 };
 
+//this function allows user to add images to the inventory by acessing users camera
 exports.addItem = function(args) {
     var page = args.object;
     page.bindingContext = pageData;
     getProf = page.getViewById('profile');
 
+//asks user for the camera permissions
     camera.requestPermissions();
     var options = { width: 300, height: 300, keepAspectRatio: false, saveToGallery: true };
     camera.takePicture(options).then(function (imageAsset) {
