@@ -2,6 +2,7 @@ require('./bundle-config');
 var application = require('application');
 var firebase = require("nativescript-plugin-firebase");
 
+//initializing firebase, return sucess message or error message 
 firebase.init({
   // Optionally pass in properties for database, authentication and cloud messaging,
   // see their respective docs.
@@ -14,4 +15,5 @@ firebase.init({
     }
 );
 
+//starting application
 application.start({ moduleName: 'main-page' });
